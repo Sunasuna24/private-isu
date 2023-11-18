@@ -108,13 +108,13 @@ $container->set('helper', function ($c) {
 
         public function try_login($account_name, $password) {
             $user = $this->fetch_first('SELECT * FROM users WHERE account_name = ? AND del_flg = 0', $account_name);
-        
+
             if ($user && calculate_passhash($user['account_name'], $password) == $user['passhash']) {
                 return $user;
             }
-        
+
             return null;
-        }        
+        }
 
         public function get_session_user() {
             if (isset($_SESSION['user'], $_SESSION['user']['id'])) {
